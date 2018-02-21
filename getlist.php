@@ -163,7 +163,7 @@ $villages_result = db_query('Select Distinct(psu) from cvd_basetable where asha_
 				}
 			}
 $html.='</select>&nbsp;&nbsp;&nbsp;&nbsp;';
-$html.='<input type="text" name="pfromdate" placeholder="Encounter Start Date" value="'.$_GET['asha_fdate'].'" id="pfromdate" class="pfromdate form-control">
+$html.='<div style="margin-top:5px;"><input type="text" name="pfromdate" placeholder="Encounter Start Date" value="'.$_GET['asha_fdate'].'" id="pfromdate" class="pfromdate form-control">&nbsp;&nbsp;
 <input type="text" name="ptodate" id="ptodate" value="'.$_GET['asha_tdate'].'" placeholder="Encounter End Date" class="ptodate form-control">';
 $dateselected = '';
 
@@ -173,7 +173,7 @@ $html.='</select>&nbsp;&nbsp;<span>Count:'.$total.'</span>&nbsp;&nbsp;';
 					<input type="submit" name="clear" value="Reset" onclick="return searchListing('.'\'Clear\''.',\'village_name\',\''.$negorder.'\',\''.$page.'\',\'locality_name\',\'village_name\',\'hh_head_fname\');" />
 					<span id="errorMessage" style="color:#EFA71E;font-weight:bold;display:none;float:right;margin-top:5px;margin-right:40%;">Please Select Village</span>
 
-					</div><br/>';
+					</div></div><br/>';
 
 $html.= '<p></p>
 <table width="100%" border="0" align="center" cellspacing=0 cellpadding=0 style="">
