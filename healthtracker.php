@@ -505,9 +505,37 @@ $html= getTabData('0');
 				}           
 			});
 		}
+                
+                //psu related localities
+                function getLocalities(){
+                    var psu_id = $('#psuid').val();
+ 
+             
+			$.ajax({
+				type: "GET",
+				url: "getPsuLocality.php?psuId="+psu_id,
+				beforeSend: function(){
+					$body.addClass("loading");					
+				},
+				success: function(prm){
+                                    console.log(prm);
+                                        $("#villagedd").find('option').remove().end();
+                                    $("#villagedd").append(prm);
+                                        	
+				},
+                                error: function(prm){
+                                     alert(prm);
+                                },
+				complete: function(){
+                                    $body.removeClass("loading");					
+				}           
+			});
+                  
+                }
 		
 		//Draw Graphs using JQuery Plugins
 		$(document).ready(function(){
+                    
 				<?php 
 					if($html!='false')
 					{
@@ -1105,7 +1133,7 @@ $html= getTabData('0');
 								$id = 1;
 								while (list($vil) = db_fetch_row($villages_result)) {
 									?>
-									<option value="<?php echo $id;?>"><?php echo $vil;?></option>
+									<option value="<?php echo $vil;?>"><?php echo $vil;?></option>
 							<?php
 								$id = $id + 1;
 								}

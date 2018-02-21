@@ -101,14 +101,27 @@ if($$encounter_types && db_num_rows($$encounter_types))	{
 	}
 }
 
+								
 $html.='</select>&nbsp;&nbsp;&nbsp;&nbsp;<span style="width:auto; float:right;">
 						<input type="submit" class="btn btn-default" id="btnExport" name="export" value="Export" onClick="return togglePopup(true,\'export\');"/>
 						<input type="submit" class="btn btn-default" id="btnExportAll" name="export" value="Export All" onClick="return togglePopup(true,\'exportall\');"/>
 					</span></p>
-		<b>Village&nbsp;:&nbsp;</b>
+                <b>Choose PSU :</b>  
+                <select id="psuid" class="dropdown form-control" onchange="getLocalities()">
+                <option value="">Select</option>';
+$villages_result = db_query('Select Distinct(psu) from cvd_basetable where asha_assigned<>\'null\' order by psu ASC;');
+        if($villages_result && db_num_rows($villages_result))	
+        {
+
+            while (list($vil) = db_fetch_row($villages_result)) {
+                    $html.='<option value="'. $vil.'">'. $vil.'</option>';
+            }
+        } 
+ 
+		$html.='</select> &nbsp;<b>Village&nbsp;:&nbsp;</b>
 		<select id="villagedd" class="dropdown form-control" onchange="enableBtnFilter();">
 		<option value="">Select</option>';
-		$result = db_query('Select distinct(vill_name) from cvd_basetable where vill_name is not null order by asha_assigned asc;');
+		/*$result = db_query('Select distinct(vill_name) from cvd_basetable where vill_name is not null order by asha_assigned asc;');
 			$selected = '';			
 			$btnfilterstatus='disabled';
 			if($result && db_num_rows($result))	{
@@ -123,7 +136,7 @@ $html.='</select>&nbsp;&nbsp;&nbsp;&nbsp;<span style="width:auto; float:right;">
 					$id = $id + 1;
 					$selected = '';
 				}
-			}			
+			}*/			
 		
 		$html.='</select>&nbsp;&nbsp;&nbsp;&nbsp;
 					<b>Street&nbsp;:&nbsp;</b>
