@@ -119,7 +119,7 @@ $villages_result = db_query('Select Distinct(psu) from cvd_basetable where asha_
         } 
  
 		$html.='</select> &nbsp;<b>Village&nbsp;:&nbsp;</b>
-		<select id="villagedd" class="dropdown form-control" onchange="enableBtnFilter();">
+		<select id="villagedd" class="dropdown form-control" onchange="setStreet();">
 		<option value="">Select</option>';
 		/*$result = db_query('Select distinct(vill_name) from cvd_basetable where vill_name is not null order by asha_assigned asc;');
 			$selected = '';			

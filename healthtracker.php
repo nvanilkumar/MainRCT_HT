@@ -225,27 +225,13 @@ $html= getTabData('0');
 				$.ajax({
 					type: "GET",
 					url: "getlocalities.php",
-					data: "id="+vid,
+					data: "villname="+vid,
 					beforeSend: function(){
 						$body.addClass("loading");					
 					},
 					success: function(prm){					
-						var res = prm.split("#");					
-						for (var i=0;i<res.length;i++)
-						{ 	
-							var option=document.createElement("option");						
-							option.text=res[i].split(',')[1];
-							option.id=res[i].split(',')[0];
-							try
-							{
-							  // for IE earlier than version 8
-							  x.add(option,x.options[null]);
-							}
-							catch (e)
-							{
-							  x.add(option,null);
-							}
-						}
+						  $("#localitydd").find('option').remove().end();
+                                                  $("#localitydd").append(prm);
 					},
 					complete: function(){
 						$body.removeClass("loading");					
@@ -266,6 +252,12 @@ $html= getTabData('0');
 			else				
 				$('#btnFilter').prop("disabled", true);			
 		}
+                
+                function setStreet()
+                {
+                    enableBtnFilter();
+                     selectVillage();
+                } 
                 
                 function refreshdata(){
                      $body = $("body");
@@ -518,8 +510,7 @@ $html= getTabData('0');
 					$body.addClass("loading");					
 				},
 				success: function(prm){
-                                    console.log(prm);
-                                        $("#villagedd").find('option').remove().end();
+                                    $("#villagedd").find('option').remove().end();
                                     $("#villagedd").append(prm);
                                         	
 				},
